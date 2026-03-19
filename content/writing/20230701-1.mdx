@@ -1,0 +1,105 @@
+---
+title: "선형대수학 1.2 — 벡터 공간"
+description: "벡터들의 집합에 구조를 부여한다. 벡터 공간의 정의와 체(Field), 행렬의 개념."
+date: "2023-07-01"
+tags: ["수학", "선형대수학"]
+category: "수학"
+published: true
+---
+
+# 선형대수학
+
+## 1.2 벡터 공간 (Vector Space)
+
+앞서 우리는 벡터에 대해서 공부했습니다.
+그리고 평면에서의 8가지 성질에 대해서도 알아보았습니다.
+
+> **성질 (Properties)**
+>
+> 1. 모든 벡터 $\mathbf{x}$, $\mathbf{y}$에 대하여 $\mathbf{x} + \mathbf{y} = \mathbf{y} + \mathbf{x}$이다.
+> 2. 모든 벡터 $\mathbf{x}$, $\mathbf{y}$, $\mathbf{z}$에 대하여 $(\mathbf{x} + \mathbf{y}) + \mathbf{z} = \mathbf{x} + (\mathbf{y} + \mathbf{z})$이다.
+> 3. 모든 벡터 $\mathbf{x}$에 대하여 $\mathbf{x} + \mathbf{0} = \mathbf{x}$를 만족하는 벡터 $\mathbf{0}$이 존재한다.
+> 4. 각 벡터 $\mathbf{x}$마다 $\mathbf{x} + \mathbf{y} = \mathbf{0}$을 만족하는 벡터 $\mathbf{y}$가 존재한다.
+> 5. 모든 벡터 $\mathbf{x}$에 대하여 $1\mathbf{x} = \mathbf{x}$이다.
+> 6. 모든 실수 $a$, $b$와 모든 벡터 $\mathbf{x}$에 대하여 $(ab)\mathbf{x} = a(b\mathbf{x})$이다.
+> 7. 모든 실수 $a$와 모든 벡터 $\mathbf{x}$, $\mathbf{y}$에 대하여 $a(\mathbf{x} + \mathbf{y}) = a\mathbf{x} + a\mathbf{y}$이다.
+> 8. 모든 실수 $a$, $b$와 모든 벡터 $\mathbf{x}$에 대하여 $(a + b)\mathbf{x} = a\mathbf{x} + b\mathbf{x}$이다.
+
+이제 이러한 성질을 가지는 벡터들의 집합을 정의해 봅시다.
+
+체 $F$에서의 벡터공간(Vector Space) 또는 선형공간(Linear Space) $V$는
+다음 8가지 조건을 만족하는 두 연산, 합과 스칼라곱에 대한 닫힌(closed) 집합입니다.
+
+> **정의 (Definition)**
+>
+> **합(sum)**은 $V$의 두 원소 $\mathbf{x}$, $\mathbf{y}$에 대하여 유일한 원소 $\mathbf{x} + \mathbf{y} \in V$를 대응하는 연산입니다. 이때 $\mathbf{x} + \mathbf{y}$는 벡터의 합이라고 합니다.
+>
+> **스칼라곱(scalar multiplication)**은 체 $F$의 원소 $a$와 $V$의 원소 $\mathbf{x}$에 대하여 유일한 원소 $a\mathbf{x} \in V$를 대응하는 연산입니다. 이때 $a\mathbf{x}$는 벡터 $\mathbf{x}$의 스칼라곱이라고 합니다.
+
+## 체 F (Field)
+
+실수 집합은 체(Field)라 불리는 수학적 구조의 대표적인 예입니다.
+기본적으로 체는 원소를 0으로 나누는 것을 제외하면 두 원소의 합, 차, 곱, 나눗셈이 가능한 대수적 구조입니다.
+
+체의 정확한 정의는 다음과 같습니다.
+
+체 $F$는 두 연산, 덧셈과 곱셈이 주어진 집합입니다.
+$x, y \in F$의 순서쌍에 대하여 $x + y$, $x \cdot y$가 유일하게 존재합니다.
+그리고 모든 원소 $a, b, c \in F$에 대하여 다음 조건을 만족합니다.
+
+> **조건 (Condition)**
+>
+> (F 1) 덧셈과 곱셈에 대한 교환법칙
+>
+> (F 2) 덧셈과 곱셈에 대한 결합법칙
+>
+> (F 3) 덧셈에 대한 항등원 $0$과 곱셈에 대한 항등원 $1$이 존재한다.
+>
+> (F 4) 덧셈에 대한 역원 $-a$와 곱셈에 대한 역원 $a^{-1}$이 존재한다.
+>
+> (F 5) 덧셈과 곱셈에 대한 분배법칙
+
+## 순서쌍 (n-tuple)
+
+순서쌍은 $n$개의 원소를 순서대로 나열한 것입니다.
+
+> **정의 (Definition)**
+>
+> $a_1, a_2, \ldots, a_n$이 체 $F$의 원소일 때, $(a_1, a_2, \ldots, a_n)$을 $n$순서쌍($n$-tuple)이라고 합니다.
+>
+> 순서쌍을 구성하는 원소 $a_1, a_2, \ldots, a_n$을 $n$순서쌍의 성분(component)이라고 합니다.
+>
+> $F$에서 성분을 가져온 두 $n$순서쌍 $(a_1, a_2, \ldots, a_n)$과 $(b_1, b_2, \ldots, b_n)$은 $a_1 = b_1,\ a_2 = b_2,\ \ldots,\ a_n = b_n$이면 같다(equal)고 합니다.
+
+### 행벡터 & 열벡터
+
+$n$순서쌍은 행벡터와 열벡터로 나타낼 수 있습니다.
+
+> **정의 (Definition)**
+>
+> $n$순서쌍 $(a_1, a_2, \ldots, a_n)$은 가급적 행벡터보다는 열벡터로 나타냅니다.
+
+## 행렬 (Matrix)
+
+행렬은 순서쌍을 원소로 가지는 집합입니다.
+즉 체 $F$에서 성분을 가져온 $m \times n$ 행렬은 다음과 같은 직사각형 형태의 순서쌍들의 집합입니다.
+
+$$
+A = \begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{pmatrix}
+$$
+
+> **정의 (Definition)**
+>
+> - 모든 $a_{ij}$ ($1 \leq i \leq m$, $1 \leq j \leq n$)는 $F$의 원소이다.
+> - $i = j$인 성분 $a_{ij}$는 이 행렬의 대각성분이다.
+> - $i \neq j$인 성분 $a_{ij}$는 이 행렬의 비대각성분이다.
+> - 성분 $a_{i1}, a_{i2}, \ldots, a_{in}$을 $i$행의 성분이라고 한다.
+> - 성분 $a_{1j}, a_{2j}, \ldots, a_{mj}$을 $j$열의 성분이라고 한다.
+> - 모든 성분이 0인 행렬을 영행렬(zero matrix)이라고 한다.
+> - 행의 개수와 열의 개수가 같은 행렬을 정사각행렬(square matrix)이라고 한다.
+> - 두 $m \times n$ 행렬 $A$, $B$에 대응하는 성분이 모두 일치할 때, $A = B$ 혹은 같다고 한다.

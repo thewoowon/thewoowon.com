@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 import { getAllPosts, getPost, getSlugs } from "@/lib/mdx";
 import { formatDate, isoDate } from "@/lib/date";
 import { articleSchema } from "@/lib/jsonld";
@@ -89,7 +91,15 @@ export default async function WritingPostPage({ params }: Props) {
 
       {/* ─── 본문 ─── */}
       <div className="prose prose-sm max-w-none">
-        <MDXRemote source={content} />
+        <MDXRemote
+          source={content}
+          options={{
+            mdxOptions: {
+              remarkPlugins: [remarkMath],
+              rehypePlugins: [rehypeKatex],
+            },
+          }}
+        />
       </div>
 
       {/* ─── 하단 ─── */}

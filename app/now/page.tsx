@@ -18,25 +18,32 @@ const NOW = {
   location: "서울",
   sections: [
     {
-      title: "만들고 있는 것",
+      title: "일하고 있는 것",
       items: [
-        "AI 추론 비용 최적화 연구 — speculative decoding 기반 접근",
+        "KB국민은행 스타뱅킹 — useAd 모듈 고도화 및 리워드 캠페인 어드민",
         "개인 포트폴리오/연구소 사이트 구축 (현재 이 사이트)",
+      ],
+    },
+    {
+      title: "연구하고 있는 것",
+      items: [
+        "OFI-LOB: LOB 기반 Mid-Price 예측 Transformer 모델 (arXiv 준비)",
+        "VaR 추정을 위한 Monte Carlo vs Quasi-Monte Carlo 비교 연구",
       ],
     },
     {
       title: "공부하고 있는 것",
       items: [
-        "시장 미시구조론 (Market Microstructure)",
-        "LLM 양자화 기법 — GPTQ, AWQ 비교 분석",
-        "복잡계 과학 — Santa Fe Institute 강의",
+        "영어 — 원서 독해, 회화, 논문 읽기를 병행",
+        "AI 논문 리뷰 — 관심 분야 최신 논문 직접 읽고 정리",
       ],
     },
     {
       title: "읽고 있는 것",
       items: [
-        "The Structure of Scientific Revolutions — Thomas Kuhn",
-        "Thinking in Systems — Donella Meadows",
+        "황제의 새 마음 — 로저 펜로즈",
+        "카오스 — 제임스 글릭",
+        "리만 가설 — 존 더비셔",
       ],
     },
     {
