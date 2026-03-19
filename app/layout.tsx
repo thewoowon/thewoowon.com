@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   keywords: [
     "우원",
     "thewoowon",
-    "AI 엔지니어",
+    "SW 엔지니어",
     "금융 AI",
     "포트폴리오",
     "블로그",
