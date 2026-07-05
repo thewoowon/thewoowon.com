@@ -1,0 +1,50 @@
+---
+title: "KB스타뱅킹 광고·혜택·리워드 수익화 시스템"
+description: "은행 앱의 광고·혜택·리워드는 지면마다 스크립트를 손으로 붙이는 구조였다. 요청부터 노출·정산까지를 하나의 공통 런타임으로 묶어, 적용 공수를 2~3일에서 1시간으로 줄이고 신규 수익을 만들었다."
+date: "2025-07-01"
+status: "shipped"
+role: "프론트엔드 리드 · KB국민은행 스타뱅킹영업부 혜택광고팀"
+stack: ["TypeScript", "Next.js", "Web Components", "JSP", "WebView"]
+tags: ["Hybrid WebView", "광고 수익화", "프론트엔드 시스템"]
+published: true
+---
+
+## Context
+
+KB스타뱅킹은 Native App + WebView 기반 Hybrid 환경이다. 그 안에서 광고·혜택·리워드 영역은 사용자 유입·참여·수익화가 직접 연결되는 **비즈니스 크리티컬 프론트엔드**다. JSP 기반 화면, 외부 광고 SDK, DMP 광고 서버, Native WebView 생명주기가 동시에 얽혀 있어, 화면 단위 수정만으로는 안정적인 광고 운영과 지면 확장에 한계가 있었다.
+
+## Problem
+
+- 광고 적용이 지면별 JavaScript 수작업에 의존 — 페이지마다 DOM 구조와 스크립트 실행 순서가 불일치
+- 광고 렌더링, 이미지 로딩, Swiper 초기화, Impression 처리 시점이 서로 충돌
+- 서버 지연·No-fill 상황에서 스켈레톤 로딩이 장기화, 광고 영역 height가 흔들려 레이아웃이 무너짐
+- WebView 재진입·Pull to Refresh·앱 복귀 시 기존 렌더 상태와 신규 요청이 충돌
+- 지면이 늘수록 개발 공수와 운영 리스크가 함께 증가
+
+## Decision
+
+광고를 "배너 하나 꽂는 일"로 다루면 지면이 늘 때마다 같은 삽질이 반복된다. 요청·렌더·노출·정산이 얽힌 하나의 생명주기로 보기 시작하면서 접근이 달라졌다.
+
+광고 요청부터 응답 정규화, 타입별 렌더링, Impression, No-fill 처리, NAM fallback, 갱신까지를 하나의 공통 런타임에 묶었다. 노출 성공 여부만이 아니라 레이아웃 안정성과 운영 공수, 정산 이벤트 정합성까지 같은 층위에서 관리했다.
+
+## Implementation
+
+- `window.useAd` 기반 공통 광고 모듈 설계, DMP 응답 데이터 구조 정규화(`ads_no / creative_url / imp_url / template` 등)
+- 광고 타입별 렌더러 분리 — `banner / icon / swiper / button / card`
+- `IntersectionObserver` 기반 실제 노출 시점 Impression 처리
+- Skeleton·height·opacity·transition 제어로 광고 영역 collapse 방지, `requestAnimationFrame` 기반 렌더 후처리 타이밍 안정화
+- **NAM fallback (Buzzvil)**: DMP No-fill 시 전환. init promise·Pointhome readiness 관리, stale init reset, `WeakMap` 기반 container별 instance 관리
+- `MutationObserver` 기반 NAM render 완료 감지로 layout collapse 방지, iframe isolation으로 WebView 재진입 안정성 확보
+- `preserveNam` / `refreshNam` 옵션 분리 — 재진입 시 기존 광고 보존, 갱신 시 destroy 후 재렌더링
+
+## Impact
+
+- 광고 적용 공수 **2~3일 → 1시간 이내**로 단축
+- 광고 지면 **7개 신규 추가**, NAM 적용·안정화로 **월 690만 원 신규 광고 수익** 창출
+- 인하우스 배너·그룹사 광고 운영 구조 마련으로 **연 광고 수수료 14억 규모** 성과에 기여
+- 리워드 UX·유입 구조 개선으로 핵심 콘텐츠 **CTR +12%**
+- 동일 광고 구조의 서비스 간 재사용 기반 확보
+
+## Transferable Insight
+
+외부 광고 SDK는 import해서 render하면 끝나는 물건이 아니다. WebView 생명주기와 얽힌 별도 런타임이라, 초기화·렌더 완료·노출 이벤트·레이아웃·갱신 정책을 한 흐름으로 잡아야 겨우 안정적으로 돈다. 지면 하나 늘릴 때마다 같은 고생을 반복하지 않으려면, 광고를 화면 기능이 아니라 런타임으로 다뤄야 한다.

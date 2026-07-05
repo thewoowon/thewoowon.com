@@ -13,13 +13,13 @@ export default function SectionHeader({
 }: SectionHeaderProps) {
   return (
     <div className="mb-6 flex items-center justify-between">
-      <h2 className="text-xs font-semibold uppercase tracking-widest text-[#525252]">
+      <h2 className="text-xs font-semibold uppercase tracking-widest text-muted">
         {title}
       </h2>
       {href && (
         <Link
           href={href}
-          className="text-xs text-[#525252] transition-colors hover:text-[#e5e5e5]"
+          className="text-xs text-muted transition-colors hover:text-text"
         >
           {linkLabel} →
         </Link>

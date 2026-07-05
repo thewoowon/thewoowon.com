@@ -13,18 +13,18 @@ export default function ProjectCard({ post }: { post: Post }) {
   return (
     <Link
       href={`/projects/${slug}`}
-      className="group flex flex-col gap-3 rounded-lg border border-[#1e1e1e] bg-[#111] p-5 transition-all duration-200 hover:border-[#2e2e2e] hover:bg-[#161616]"
+      className="group flex flex-col gap-3 rounded-lg border border-hairline bg-raised p-5 transition-all duration-200 hover:border-border hover:bg-surface"
     >
       <div className="flex items-start justify-between gap-4">
-        <h3 className="text-sm font-semibold text-[#e5e5e5] group-hover:text-[#fafafa] transition-colors">
+        <h3 className="text-sm font-semibold text-text transition-colors group-hover:text-text-high">
           {fm.title}
         </h3>
-        <span className="shrink-0 text-xs text-[#525252]">
+        <span className="shrink-0 text-xs text-muted">
           {fm.status ? STATUS_LABEL[fm.status] : ""}
         </span>
       </div>
 
-      <p className="text-xs leading-relaxed text-[#737373]">{fm.description}</p>
+      <p className="text-xs leading-relaxed text-subtle">{fm.description}</p>
 
       <div className="flex items-center justify-between">
         {fm.stack && (
@@ -32,16 +32,14 @@ export default function ProjectCard({ post }: { post: Post }) {
             {fm.stack.slice(0, 4).map((s) => (
               <span
                 key={s}
-                className="rounded bg-[#1e1e1e] px-1.5 py-0.5 text-[10px] text-[#525252]"
+                className="rounded bg-surface px-1.5 py-0.5 text-[10px] text-muted"
               >
                 {s}
               </span>
             ))}
           </div>
         )}
-        <span className="text-[10px] text-[#525252]">
-          {formatDateShort(fm.date)}
-        </span>
+        <span className="text-[10px] text-muted">{formatDateShort(fm.date)}</span>
       </div>
     </Link>
   );

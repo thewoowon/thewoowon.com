@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
-import { getAllPosts, getPost, getSlugs } from "@/lib/mdx";
+import "katex/dist/katex.min.css";
+import { getPost, getSlugs } from "@/lib/mdx";
 import { formatDate, isoDate } from "@/lib/date";
 import { articleSchema } from "@/lib/jsonld";
 import { siteConfig } from "@/lib/site";
@@ -105,7 +106,7 @@ export default async function WritingPostPage({ params }: Props) {
       {/* ─── 하단 ─── */}
       <footer className="border-t border-border pt-8">
         <p className="text-xs text-muted">
-          글이 도움이 됐다면{" "}
+          질문이나 반론은{" "}
           <a
             href={siteConfig.github}
             target="_blank"
@@ -114,7 +115,7 @@ export default async function WritingPostPage({ params }: Props) {
           >
             GitHub
           </a>
-          에서 이야기 나눠요.
+          에서 언제든 환영한다.
         </p>
       </footer>
     </article>

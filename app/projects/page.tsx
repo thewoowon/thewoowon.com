@@ -24,7 +24,7 @@ export default function ProjectsPage() {
           프로젝트
         </h1>
         <p className="text-sm text-subtle">
-          무엇을 만들었는지보다 왜, 어떻게 만들었는지를 기록한다.
+          결과 화면보다, 그 뒤의 문제와 결정을 적었다.
         </p>
       </div>
 

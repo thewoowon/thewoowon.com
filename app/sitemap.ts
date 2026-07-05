@@ -9,6 +9,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: base, lastModified: new Date(), changeFrequency: "weekly", priority: 1 },
     { url: `${base}/about`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/projects`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
+    { url: `${base}/research`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
+    { url: `${base}/boundary-first`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${base}/boundary-first/graph`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/writing`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
     { url: `${base}/now`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
   ];
@@ -22,6 +25,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   );
 
+  const researchRoutes: MetadataRoute.Sitemap = getAllPosts("research").map(
+    (post) => ({
+      url: `${base}/research/${post.slug}`,
+      lastModified: new Date(post.frontmatter.date),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    })
+  );
+
   const writingRoutes: MetadataRoute.Sitemap = getAllPosts("writing").map(
     (post) => ({
       url: `${base}/writing/${post.slug}`,
@@ -31,5 +43,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   );
 
-  return [...staticRoutes, ...projectRoutes, ...writingRoutes];
+  return [...staticRoutes, ...projectRoutes, ...researchRoutes, ...writingRoutes];
 }

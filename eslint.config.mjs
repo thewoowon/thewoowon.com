@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Yarn SDK shims are vendored tooling, not our source.
+    ".yarn/**",
   ]),
 ]);
 

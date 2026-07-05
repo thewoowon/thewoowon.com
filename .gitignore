@@ -42,3 +42,7 @@ next-env.d.ts
 
 # claude
 .claude
+
+# personal documents (not for the public repo)
+*.pdf
+WRITING_BACKLOG.md

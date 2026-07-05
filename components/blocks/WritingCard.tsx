@@ -7,17 +7,15 @@ export default function WritingCard({ post }: { post: Post }) {
   return (
     <Link
       href={`/writing/${slug}`}
-      className="group flex items-start justify-between gap-6 border-b border-[#1a1a1a] py-4 transition-colors last:border-0 hover:border-[#2a2a2a]"
+      className="group flex items-start justify-between gap-6 border-b border-hairline py-4 transition-colors last:border-0 hover:border-border"
     >
       <div className="flex flex-col gap-1">
-        <h3 className="text-sm font-medium text-[#e5e5e5] group-hover:text-[#fafafa] transition-colors">
+        <h3 className="text-sm font-medium text-text transition-colors group-hover:text-text-high">
           {fm.title}
         </h3>
-        <p className="text-xs text-[#525252]">{fm.description}</p>
+        <p className="text-xs text-muted">{fm.description}</p>
       </div>
-      <span className="shrink-0 text-xs text-[#525252]">
-        {formatDate(fm.date)}
-      </span>
+      <span className="shrink-0 text-xs text-muted">{formatDate(fm.date)}</span>
     </Link>
   );
 }

@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { getAllPosts, getPost, getSlugs } from "@/lib/mdx";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import "katex/dist/katex.min.css";
+import { getPost, getSlugs } from "@/lib/mdx";
 import { formatDate } from "@/lib/date";
 import { projectSchema } from "@/lib/jsonld";
 import { siteConfig } from "@/lib/site";
@@ -78,6 +81,12 @@ export default async function ProjectPage({ params }: Props) {
         </h1>
         <p className="text-sm text-subtle">{fm.description}</p>
 
+        {fm.role && (
+          <p className="text-xs text-muted">
+            <span className="text-subtle">내 역할</span> · {fm.role}
+          </p>
+        )}
+
         {fm.stack && (
           <div className="flex flex-wrap gap-1.5 pt-1">
             {fm.stack.map((s) => (
@@ -105,7 +114,15 @@ export default async function ProjectPage({ params }: Props) {
 
       {/* ─── 본문 ─── */}
       <div className="prose prose-sm max-w-none">
-        <MDXRemote source={content} />
+        <MDXRemote
+          source={content}
+          options={{
+            mdxOptions: {
+              remarkPlugins: [remarkMath],
+              rehypePlugins: [rehypeKatex],
+            },
+          }}
+        />
       </div>
     </article>
   );

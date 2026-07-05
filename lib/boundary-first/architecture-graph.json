@@ -1,0 +1,878 @@
+{
+  "$schema": "boundary-first/architecture-graph@1",
+  "generatedAt": "2026-07-05T13:45:20.237Z",
+  "description": "Module dependency graph of the three boundary-first templates, extracted from source. Layers are ordered low→high; every edge should be 'downward' (allowed by the layer rule). Any 'upward' edge is an architecture violation.",
+  "legend": {
+    "kinds": [
+      "shared",
+      "native",
+      "entities",
+      "features",
+      "widgets",
+      "pages",
+      "screens",
+      "app"
+    ],
+    "layerAxis": "layerIndex: 0 = most primitive (shared/lib) … 9 = app (composition root)",
+    "edgeDirection": "downward = permitted (higher layer imports lower); upward = forbidden (should be none)"
+  },
+  "suggestedMapping3D": {
+    "y": "layerIndex (height): primitives at the bottom, app at the top",
+    "x": "spread nodes within a layer (e.g. index among same-layer modules)",
+    "z": "template lane: react / next / rn as three parallel slabs, or render one template at a time",
+    "nodeSize": "files (module size)",
+    "edgeColor": "direction (downward = calm/neutral, upward = alarm — expect none)",
+    "note": "Read the dataviz skill before choosing the palette; keep light+dark parity."
+  },
+  "templates": {
+    "react": {
+      "runtime": "Browser SPA",
+      "layers": [
+        {
+          "layer": "shared/lib",
+          "index": 0
+        },
+        {
+          "layer": "shared/config",
+          "index": 1
+        },
+        {
+          "layer": "shared/types",
+          "index": 2
+        },
+        {
+          "layer": "shared/ui",
+          "index": 3
+        },
+        {
+          "layer": "shared/api",
+          "index": 4
+        },
+        {
+          "layer": "entities",
+          "index": 5
+        },
+        {
+          "layer": "features",
+          "index": 6
+        },
+        {
+          "layer": "widgets",
+          "index": 7
+        },
+        {
+          "layer": "pages",
+          "index": 8
+        },
+        {
+          "layer": "app",
+          "index": 9
+        }
+      ],
+      "nodes": [
+        {
+          "id": "react:shared/lib",
+          "module": "shared/lib",
+          "layer": "shared/lib",
+          "layerIndex": 0,
+          "kind": "shared",
+          "files": 3
+        },
+        {
+          "id": "react:shared/config",
+          "module": "shared/config",
+          "layer": "shared/config",
+          "layerIndex": 1,
+          "kind": "shared",
+          "files": 2
+        },
+        {
+          "id": "react:shared/types",
+          "module": "shared/types",
+          "layer": "shared/types",
+          "layerIndex": 2,
+          "kind": "shared",
+          "files": 2
+        },
+        {
+          "id": "react:shared/ui",
+          "module": "shared/ui",
+          "layer": "shared/ui",
+          "layerIndex": 3,
+          "kind": "shared",
+          "files": 13
+        },
+        {
+          "id": "react:shared/api",
+          "module": "shared/api",
+          "layer": "shared/api",
+          "layerIndex": 4,
+          "kind": "shared",
+          "files": 3
+        },
+        {
+          "id": "react:entities/user",
+          "module": "entities/user",
+          "layer": "entities",
+          "layerIndex": 5,
+          "kind": "entities",
+          "files": 9
+        },
+        {
+          "id": "react:features/auth",
+          "module": "features/auth",
+          "layer": "features",
+          "layerIndex": 6,
+          "kind": "features",
+          "files": 6
+        },
+        {
+          "id": "react:features/user-search",
+          "module": "features/user-search",
+          "layer": "features",
+          "layerIndex": 6,
+          "kind": "features",
+          "files": 6
+        },
+        {
+          "id": "react:widgets/app-shell",
+          "module": "widgets/app-shell",
+          "layer": "widgets",
+          "layerIndex": 7,
+          "kind": "widgets",
+          "files": 2
+        },
+        {
+          "id": "react:pages/home",
+          "module": "pages/home",
+          "layer": "pages",
+          "layerIndex": 8,
+          "kind": "pages",
+          "files": 2
+        },
+        {
+          "id": "react:pages/not-found",
+          "module": "pages/not-found",
+          "layer": "pages",
+          "layerIndex": 8,
+          "kind": "pages",
+          "files": 2
+        },
+        {
+          "id": "react:pages/sign-in",
+          "module": "pages/sign-in",
+          "layer": "pages",
+          "layerIndex": 8,
+          "kind": "pages",
+          "files": 2
+        },
+        {
+          "id": "react:pages/users",
+          "module": "pages/users",
+          "layer": "pages",
+          "layerIndex": 8,
+          "kind": "pages",
+          "files": 3
+        },
+        {
+          "id": "react:app",
+          "module": "app",
+          "layer": "app",
+          "layerIndex": 9,
+          "kind": "app",
+          "files": 8
+        }
+      ],
+      "edges": [
+        {
+          "source": "react:app",
+          "target": "react:shared/config",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "react:app",
+          "target": "react:shared/lib",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "react:app",
+          "target": "react:entities/user",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "react:app",
+          "target": "react:shared/ui",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "react:app",
+          "target": "react:pages/home",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "react:app",
+          "target": "react:pages/not-found",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "react:app",
+          "target": "react:pages/sign-in",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "react:app",
+          "target": "react:pages/users",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "react:app",
+          "target": "react:widgets/app-shell",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "react:entities/user",
+          "target": "react:shared/api",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "react:features/auth",
+          "target": "react:shared/ui",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "react:features/user-search",
+          "target": "react:entities/user",
+          "count": 2,
+          "direction": "downward"
+        },
+        {
+          "source": "react:features/user-search",
+          "target": "react:shared/types",
+          "count": 2,
+          "direction": "downward"
+        },
+        {
+          "source": "react:features/user-search",
+          "target": "react:shared/ui",
+          "count": 2,
+          "direction": "downward"
+        },
+        {
+          "source": "react:pages/not-found",
+          "target": "react:shared/ui",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "react:pages/sign-in",
+          "target": "react:features/auth",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "react:pages/users",
+          "target": "react:entities/user",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "react:pages/users",
+          "target": "react:shared/api",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "react:pages/users",
+          "target": "react:shared/types",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "react:pages/users",
+          "target": "react:shared/ui",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "react:pages/users",
+          "target": "react:features/user-search",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "react:shared/api",
+          "target": "react:shared/config",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "react:shared/ui",
+          "target": "react:shared/lib",
+          "count": 2,
+          "direction": "downward"
+        },
+        {
+          "source": "react:widgets/app-shell",
+          "target": "react:shared/lib",
+          "count": 1,
+          "direction": "downward"
+        }
+      ]
+    },
+    "next": {
+      "runtime": "Server + Browser",
+      "layers": [
+        {
+          "layer": "shared/lib",
+          "index": 0
+        },
+        {
+          "layer": "shared/config",
+          "index": 1
+        },
+        {
+          "layer": "shared/types",
+          "index": 2
+        },
+        {
+          "layer": "shared/ui",
+          "index": 3
+        },
+        {
+          "layer": "shared/api",
+          "index": 4
+        },
+        {
+          "layer": "entities",
+          "index": 5
+        },
+        {
+          "layer": "features",
+          "index": 6
+        },
+        {
+          "layer": "widgets",
+          "index": 7
+        },
+        {
+          "layer": "app",
+          "index": 9
+        }
+      ],
+      "nodes": [
+        {
+          "id": "next:shared/lib",
+          "module": "shared/lib",
+          "layer": "shared/lib",
+          "layerIndex": 0,
+          "kind": "shared",
+          "files": 3
+        },
+        {
+          "id": "next:shared/config",
+          "module": "shared/config",
+          "layer": "shared/config",
+          "layerIndex": 1,
+          "kind": "shared",
+          "files": 2
+        },
+        {
+          "id": "next:shared/types",
+          "module": "shared/types",
+          "layer": "shared/types",
+          "layerIndex": 2,
+          "kind": "shared",
+          "files": 2
+        },
+        {
+          "id": "next:shared/ui",
+          "module": "shared/ui",
+          "layer": "shared/ui",
+          "layerIndex": 3,
+          "kind": "shared",
+          "files": 13
+        },
+        {
+          "id": "next:shared/api",
+          "module": "shared/api",
+          "layer": "shared/api",
+          "layerIndex": 4,
+          "kind": "shared",
+          "files": 4
+        },
+        {
+          "id": "next:entities/user",
+          "module": "entities/user",
+          "layer": "entities",
+          "layerIndex": 5,
+          "kind": "entities",
+          "files": 8
+        },
+        {
+          "id": "next:features/auth",
+          "module": "features/auth",
+          "layer": "features",
+          "layerIndex": 6,
+          "kind": "features",
+          "files": 5
+        },
+        {
+          "id": "next:features/user-search",
+          "module": "features/user-search",
+          "layer": "features",
+          "layerIndex": 6,
+          "kind": "features",
+          "files": 3
+        },
+        {
+          "id": "next:widgets/dashboard-shell",
+          "module": "widgets/dashboard-shell",
+          "layer": "widgets",
+          "layerIndex": 7,
+          "kind": "widgets",
+          "files": 2
+        },
+        {
+          "id": "next:app",
+          "module": "app",
+          "layer": "app",
+          "layerIndex": 9,
+          "kind": "app",
+          "files": 22
+        }
+      ],
+      "edges": [
+        {
+          "source": "next:app",
+          "target": "next:shared/ui",
+          "count": 10,
+          "direction": "downward"
+        },
+        {
+          "source": "next:app",
+          "target": "next:entities/user",
+          "count": 4,
+          "direction": "downward"
+        },
+        {
+          "source": "next:app",
+          "target": "next:widgets/dashboard-shell",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "next:app",
+          "target": "next:shared/api",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "next:app",
+          "target": "next:features/user-search",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "next:entities/user",
+          "target": "next:shared/api",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "next:features/auth",
+          "target": "next:shared/ui",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "next:features/user-search",
+          "target": "next:shared/ui",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "next:shared/api",
+          "target": "next:shared/config",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "next:shared/ui",
+          "target": "next:shared/lib",
+          "count": 2,
+          "direction": "downward"
+        }
+      ]
+    },
+    "rn": {
+      "runtime": "iOS / Android",
+      "layers": [
+        {
+          "layer": "shared/lib",
+          "index": 0
+        },
+        {
+          "layer": "shared/config",
+          "index": 1
+        },
+        {
+          "layer": "shared/types",
+          "index": 2
+        },
+        {
+          "layer": "shared/ui",
+          "index": 3
+        },
+        {
+          "layer": "shared/api",
+          "index": 4
+        },
+        {
+          "layer": "shared/native",
+          "index": 4
+        },
+        {
+          "layer": "entities",
+          "index": 5
+        },
+        {
+          "layer": "features",
+          "index": 6
+        },
+        {
+          "layer": "widgets",
+          "index": 7
+        },
+        {
+          "layer": "screens",
+          "index": 8
+        },
+        {
+          "layer": "app",
+          "index": 9
+        }
+      ],
+      "nodes": [
+        {
+          "id": "rn:shared/lib",
+          "module": "shared/lib",
+          "layer": "shared/lib",
+          "layerIndex": 0,
+          "kind": "shared",
+          "files": 3
+        },
+        {
+          "id": "rn:shared/config",
+          "module": "shared/config",
+          "layer": "shared/config",
+          "layerIndex": 1,
+          "kind": "shared",
+          "files": 2
+        },
+        {
+          "id": "rn:shared/types",
+          "module": "shared/types",
+          "layer": "shared/types",
+          "layerIndex": 2,
+          "kind": "shared",
+          "files": 3
+        },
+        {
+          "id": "rn:shared/ui",
+          "module": "shared/ui",
+          "layer": "shared/ui",
+          "layerIndex": 3,
+          "kind": "shared",
+          "files": 11
+        },
+        {
+          "id": "rn:shared/api",
+          "module": "shared/api",
+          "layer": "shared/api",
+          "layerIndex": 4,
+          "kind": "shared",
+          "files": 3
+        },
+        {
+          "id": "rn:shared/native",
+          "module": "shared/native",
+          "layer": "shared/native",
+          "layerIndex": 4,
+          "kind": "native",
+          "files": 12
+        },
+        {
+          "id": "rn:entities/user",
+          "module": "entities/user",
+          "layer": "entities",
+          "layerIndex": 5,
+          "kind": "entities",
+          "files": 9
+        },
+        {
+          "id": "rn:features/auth",
+          "module": "features/auth",
+          "layer": "features",
+          "layerIndex": 6,
+          "kind": "features",
+          "files": 6
+        },
+        {
+          "id": "rn:features/permission-request",
+          "module": "features/permission-request",
+          "layer": "features",
+          "layerIndex": 6,
+          "kind": "features",
+          "files": 7
+        },
+        {
+          "id": "rn:features/user-search",
+          "module": "features/user-search",
+          "layer": "features",
+          "layerIndex": 6,
+          "kind": "features",
+          "files": 5
+        },
+        {
+          "id": "rn:screens/home",
+          "module": "screens/home",
+          "layer": "screens",
+          "layerIndex": 8,
+          "kind": "screens",
+          "files": 2
+        },
+        {
+          "id": "rn:screens/permission",
+          "module": "screens/permission",
+          "layer": "screens",
+          "layerIndex": 8,
+          "kind": "screens",
+          "files": 2
+        },
+        {
+          "id": "rn:screens/settings",
+          "module": "screens/settings",
+          "layer": "screens",
+          "layerIndex": 8,
+          "kind": "screens",
+          "files": 2
+        },
+        {
+          "id": "rn:screens/users",
+          "module": "screens/users",
+          "layer": "screens",
+          "layerIndex": 8,
+          "kind": "screens",
+          "files": 3
+        },
+        {
+          "id": "rn:app",
+          "module": "app",
+          "layer": "app",
+          "layerIndex": 9,
+          "kind": "app",
+          "files": 15
+        }
+      ],
+      "edges": [
+        {
+          "source": "rn:app",
+          "target": "rn:shared/config",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:app",
+          "target": "rn:shared/lib",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:app",
+          "target": "rn:entities/user",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:app",
+          "target": "rn:screens/users",
+          "count": 2,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:app",
+          "target": "rn:screens/home",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:app",
+          "target": "rn:screens/settings",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:app",
+          "target": "rn:screens/permission",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:app",
+          "target": "rn:shared/types",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:app",
+          "target": "rn:shared/native",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:entities/user",
+          "target": "rn:shared/api",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:features/auth",
+          "target": "rn:shared/ui",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:features/permission-request",
+          "target": "rn:shared/lib",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:features/permission-request",
+          "target": "rn:shared/native",
+          "count": 3,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:features/permission-request",
+          "target": "rn:shared/ui",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:features/user-search",
+          "target": "rn:entities/user",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:features/user-search",
+          "target": "rn:shared/native",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:features/user-search",
+          "target": "rn:shared/types",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:screens/home",
+          "target": "rn:shared/types",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:screens/home",
+          "target": "rn:shared/ui",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:screens/permission",
+          "target": "rn:features/permission-request",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:screens/permission",
+          "target": "rn:shared/ui",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:screens/settings",
+          "target": "rn:shared/native",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:screens/settings",
+          "target": "rn:shared/ui",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:screens/users",
+          "target": "rn:shared/types",
+          "count": 3,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:screens/users",
+          "target": "rn:entities/user",
+          "count": 2,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:screens/users",
+          "target": "rn:shared/api",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:screens/users",
+          "target": "rn:shared/ui",
+          "count": 2,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:screens/users",
+          "target": "rn:features/user-search",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:shared/api",
+          "target": "rn:shared/config",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:shared/native",
+          "target": "rn:shared/lib",
+          "count": 1,
+          "direction": "downward"
+        },
+        {
+          "source": "rn:shared/types",
+          "target": "rn:shared/lib",
+          "count": 1,
+          "direction": "downward"
+        }
+      ]
+    }
+  }
+}

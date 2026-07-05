@@ -13,9 +13,9 @@ export function personSchema() {
     sameAs: [
       "https://github.com/thewoowon",
     ],
-    jobTitle: "AI · 금융 · 엔지니어링",
+    jobTitle: "금융 AI · 제품 엔지니어",
     description:
-      "AI·금융·연구·제품·엔지니어링이 교차하는 고밀도 개인 연구소를 운영합니다.",
+      "KB국민은행 스타뱅킹에서 광고·리워드 프론트엔드를 만들고, 금융 리스크·AI 감독 문제를 연구합니다.",
   };
 }
 
@@ -49,5 +49,23 @@ export function projectSchema(slug: string, fm: Frontmatter) {
       url: PERSON_URL,
     },
     url: `${SITE_URL}/projects/${slug}`,
+  };
+}
+
+export function researchSchema(slug: string, fm: Frontmatter) {
+  return {
+    "@context": "https://schema.org",
+    "@type": fm.kind === "essay" || fm.kind === "policy" ? "Article" : "ScholarlyArticle",
+    headline: fm.title,
+    description: fm.description,
+    datePublished: fm.date,
+    ...(fm.venue ? { publisher: { "@type": "Organization", name: fm.venue } } : {}),
+    author: {
+      "@type": "Person",
+      name: PERSON_NAME,
+      url: PERSON_URL,
+    },
+    url: `${SITE_URL}/research/${slug}`,
+    mainEntityOfPage: `${SITE_URL}/research/${slug}`,
   };
 }

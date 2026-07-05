@@ -50,10 +50,10 @@ export default function OgImage() {
               fontSize: 20,
               color: "#737373",
               lineHeight: 1.5,
-              maxWidth: 640,
+              maxWidth: 680,
             }}
           >
-            AI · 금융 · 연구 · 제품 · 엔지니어링이 교차하는 고밀도 개인 연구소
+            복잡한 시스템을 만들고, 그 신뢰성을 연구한다 · 금융 AI · 제품 엔지니어링
           </span>
         </div>
 

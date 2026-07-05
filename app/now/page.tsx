@@ -14,27 +14,36 @@ export const metadata: Metadata = {
 
 // 여기를 직접 수정해서 현재 상태를 업데이트한다
 const NOW = {
-  updatedAt: "2026년 3월",
+  updatedAt: "2026년 7월",
   location: "서울",
   sections: [
     {
       title: "일하고 있는 것",
       items: [
-        "KB국민은행 스타뱅킹 — useAd 모듈 고도화 및 리워드 캠페인 어드민",
-        "개인 포트폴리오/연구소 사이트 구축 (현재 이 사이트)",
+        "KB국민은행 스타뱅킹 — 광고·혜택·리워드 수익화 시스템 운영 및 useAd 모듈 고도화",
+        "외부 광고 SDK(NAM) 생명주기·재진입 안정화 및 리워드 캠페인 어드민",
+        "개인 포트폴리오/연구소 사이트 개편 (현재 이 사이트)",
       ],
     },
     {
-      title: "연구하고 있는 것",
+      title: "붙잡고 있는 것",
       items: [
-        "OFI-LOB: LOB 기반 Mid-Price 예측 Transformer 모델 (arXiv 준비)",
-        "VaR 추정을 위한 Monte Carlo vs Quasi-Monte Carlo 비교 연구",
+        "경계 우선(boundary-first) 프론트엔드 구조 — 화면이 아니라 경계에서 시작하는 나만의 설계 원칙",
+        "라우팅·상태·도메인·실패·런타임 경계를 React·Next.js·React Native 템플릿과 아키텍처 검증기로 정리",
+      ],
+    },
+    {
+      title: "써 둔 연구",
+      items: [
+        "FINRCA — 계보 그래프 기반 금융 리스크 원인 분석 (탈고, arXiv 공개 준비)",
+        "몬테카를로 / 준몬테카를로 VaR 비교 — 한국 금융시장 실증 (탈고)",
+        "Agentic Finance의 감독 가능성(CSOL·MSTS) 거버넌스 설계 (탈고)",
       ],
     },
     {
       title: "공부하고 있는 것",
       items: [
-        "영어 — 원서 독해, 회화, 논문 읽기를 병행",
+        "영어 — 원서 독해, 회화, 논문 읽기를 병행 (E5 KAIST)",
         "AI 논문 리뷰 — 관심 분야 최신 논문 직접 읽고 정리",
       ],
     },
