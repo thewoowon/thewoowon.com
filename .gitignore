@@ -45,6 +45,7 @@ next-env.d.ts
 
 # personal documents (not for the public repo)
 *.pdf
+VAR_PAPER_DRAFT.md
 WRITING_BACKLOG.md
 # KB useAd reference code (not for the public repo)
 useAd/

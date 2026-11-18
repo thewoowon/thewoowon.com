@@ -82,7 +82,7 @@ const RESEARCH = [
   },
   {
     title: "지방정부 주도 관계금융 기반 사회연대경제 지원 모델 설계",
-    note: "「사회연대경제 연구」 2026 · 개인 연구",
+    note: "2026 사회연대경제 연구 공모전 제출 · 개인 연구",
     href: "/research/social-solidarity-economy",
   },
 ];
