@@ -1,7 +1,7 @@
 ---
 title: "Supervisory Observability for Agentic Finance"
-description: "A Cross-border Governance Framework for International Financial Centers. 금융 AI 에이전트를 감독하기 위한 관찰 계층(CSOL)과 최소 기록 표준(MSTS v0.1)을 제안했습니다."
-date: "2026-06-15"
+description: "A Cross-border Governance Framework for International Financial Centers. 금융 AI 에이전트를 국경을 넘어 감독하기 위한 관찰 계층(CSOL)과 최소 기록 표준(MSTS v0.1)을 제안했습니다."
+date: "2026-04-01"
 kind: "paper"
 venue: "WAIFC 게재 · 단독 저자"
 tags: ["금융AI", "거버넌스", "Agentic AI", "감독"]
@@ -11,34 +11,61 @@ published: true
 
 ## 수상과 발표
 
-- WAIFC(World Alliance of International Financial Centers) Young Academic Award 2026 **Top 3 Finalist · 2nd Place**
-- 2026년 9월 WAIFC 연례총회(Annual General Meeting)에서 이사회와 국제금융센터 관계자를 대상으로 초청 발표
+- WAIFC(World Alliance of International Financial Centers) Young Academic Award 2026 **Top 3 Finalist · 2nd Place**. 부문은 Digital Finance and Technology, 주제는 에이전틱 AI가 금융에 미치는 영향입니다.
+- 2026년 9월 WAIFC 연례총회(Annual General Meeting)에서 이사회와 국제금융센터 관계자를 대상으로 초청 발표했습니다.
+- 2026년 4월에 제출했고, 2026년 9월에 오류를 바로잡은 1.1판을 냈습니다.
 
-## 배경
+## 문제
 
-지금의 금융 감독은 사람이 최종 판단한다는 전제로 짜여 있습니다. AI 에이전트는 시장 데이터와 API를 읽고, 외부 도구를 호출하고, 중간 판단을 거쳐 실행까지 스스로 합니다. 이렇게 되면 감독기관은 AI가 무엇을 보고, 어떻게 판단하고, 어떤 도구를 호출해 무엇을 실행했는지 사후에 되짚기 어렵습니다.
+금융권의 AI는 따로 떨어진 모델에서, 시장 상황을 읽고 외부 도구를 호출하고 사람의 개입을 최소로 한 채 실시간으로 실행하는 반자율 에이전트로 옮겨 가고 있습니다. 이 논문은 지금의 감독 체계가 다루지 못하는 공백 세 가지를 정의합니다.
 
-## 세 가지 감독 공백
+1. **Event Visibility Gap**: 감독기관이 에이전트가 무엇을 보고, 무엇을 결정하고, 무엇을 실행했는지 되짚을 수 없습니다.
+2. **Cross-border Coordination Gap**: AI가 일으킨 금융 활동은 여러 기관과 관할을 가로지르는데, 감독은 나라별로 나뉘어 있습니다.
+3. **Intervention Gap**: 문제를 찾아내도 개입 단계를 올리거나, 속도를 제한하거나, 사후 조사를 할 표준 근거가 없습니다.
 
-1. **Event Visibility Gap**: 에이전트의 판단 과정을 볼 수 없습니다.
-2. **Cross-border Coordination Gap**: 여러 국가와 기관에 걸친 AI 활동을 하나의 감독 체계로 추적하기 어렵습니다.
-3. **Intervention Gap**: 문제를 발견해도 표준화된 개입·중단·조정 절차가 부족합니다.
+FSB, 영란은행 금융정책위원회, IOSCO, 싱가포르 IMDA 모두 이 위험을 인정하지만, 에이전트가 무엇을 기록하고 감독기관이 무엇을 보며 국경 간 협력은 어떻게 하는지를 정한 운영 구조는 아직 없습니다.
 
-## 제안
+## 제안 1. CSOL (Cross-border Supervisory Observability Layer)
 
-- **CSOL (Cross-border Supervisory Observability Layer)**: 국경을 넘는 금융 AI 활동을 감독기관이 관찰하고, 되짚고, 개입할 수 있게 하는 계층입니다.
-- **MSTS (Minimum Supervisory Trace Schema) v0.1**: 금융 AI 에이전트가 남겨야 하는 최소 사건 기록의 표준 스키마입니다.
+감독기관이 기관과 관할을 넘나드는 에이전트 활동을 지켜보고, 되짚고, 개입하는 데 필요한 최소한의 정보, 이벤트 형식, 통제 지점, 접근 경로를 정한 표준입니다. 특정 기술을 정하지 않고 무엇을 기록하고 어떻게 공유할지만 정합니다. 다섯 구성 요소로 이뤄집니다.
 
-에이전트의 내부 상태를 전부 기록하지는 않습니다. 감독에 꼭 필요한 최소한만 남기고, 감독기관이 위험 수준에 맞춰 그 기록을 보고 개입할 수 있도록 표준을 정합니다. MSTS의 최소 필드는 다음과 같습니다.
+| 구성 요소 | 내용 |
+|---|---|
+| 1. Agent Registry | 중요한 금융 AI 에이전트를 등록합니다. 소유 기관, 업무 기능, 자율성 등급, 모델·공급자, 도구 권한, 관할, 긴급 정지 책임자를 남깁니다. |
+| 2. Event Trace | 에이전트의 중요한 행동마다 MSTS 형식의 이벤트 기록을 남깁니다. 기록은 위변조를 알아챌 수 있고 UTC로 시각을 찍습니다. |
+| 3. Dependency Disclosure | 파운데이션 모델, 클라우드, 데이터 공급자 등 의존성을 최소 연 1회와 중대한 변경 때 공개합니다. 국제금융센터 단위로 모으면 한 기관만 봐서는 안 보이는 집중 위험이 드러납니다. |
+| 4. Supervisory Access | 접근을 T0(공개 통계)부터 T1(요약 보고), T2(이벤트 재구성), T3(사고 포렌식), T4(긴급 개입)까지 다섯 단계로 나눕니다. |
+| 5. Intervention | 경보, 기록 강화, 사람에게 이관, 도구 권한 회수, 속도 제한, 전략 정지, 긴급 정지로 이어지는 표준 개입 단계입니다. 표준이 같으면 다른 국제금융센터도 같은 개입 언어로 대응할 수 있습니다. |
 
-| 필드 | 의미 | 감독 용도 |
+## 제안 2. MSTS v0.1 (Minimum Supervisory Trace Schema)
+
+금융 AI 에이전트의 이벤트 기록에 들어가야 할 최소 필드를 JSON Schema로 정했습니다. 필드는 **29개**이고, 그중 **14개**는 모든 이벤트에 필수입니다. 나머지는 자율성 × 중요도 매트릭스에 따라 요구됩니다.
+
+| 필드 그룹 | 예시 필드 | 요구 시점 |
 |---|---|---|
-| `agent_id` / `principal` | 실행 주체와 위임 관계 | 책임 귀속 |
-| `observed_inputs` | 판단 시점에 참조한 시장 데이터·API 응답의 해시 | 판단 근거 확인 |
-| `decision` + `rationale_ref` | 내린 결정과 근거 스냅샷 포인터 | 판단 복원 |
-| `tool_calls` | 호출한 외부 도구·주문 API와 파라미터 | 행위 추적 |
-| `risk_tier` | 미리 정한 위험 등급 | 관찰 강도·개입 기준 |
-| `jurisdiction` | 관할·국경 정보 | 국경 간 조정 |
-| `intervention_hooks` | 표준 중단·조정 진입점 | 개입 |
+| Core Identity | `schema_version`, `event_id`, `timestamp_utc`, `jurisdiction`, `institution_id`, `agent_id`, `agent_role`, `autonomy_level` | 모든 이벤트 (`criticality_level`은 L2부터) |
+| Action | `trigger_type`, `executed_action`, `human_review_status`, `override_flag`, `trigger_source_hash` | L0부터 (`trigger_source_hash`는 L2부터) |
+| Infrastructure | `model_provider`, `model_name`, `model_version`, `cloud_provider`, `tool_calls`, `data_sources` | L2부터 (`tool_calls`는 L2 × C2, `data_sources`는 L3부터) |
+| Decision Quality | `decision_summary`, `confidence_meta` | L3 × C3부터 |
+| Risk & Supervision | `risk_flags`, `cross_border_jurisdictions`, `incident_linkage`, `post_action_outcome` | `risk_flags`는 모든 이벤트 |
+| Access Control | `retention_class`, `supervisory_access_tier`, `tamper_evidence` | 앞의 둘은 모든 이벤트 |
 
-위험 등급이 높은 에이전트일수록 더 촘촘한 기록과 더 강한 개입 수단을 요구하고, 낮으면 최소 기록만 남깁니다. 감독 비용이 위험에 비례하도록 설계했습니다.
+요구 수준은 위험에 비례합니다. 자율성은 L0(분석만)부터 L4(강한 제약 아래 고자율 실행)까지 다섯 단계, 중요도는 C1(낮음)부터 C4(시스템 리스크에 직결)까지 네 단계로 나눕니다. L3–L4 × C3–C4에 해당하는 네 칸이 감독의 최우선 대상입니다.
+
+## 시나리오 평가
+
+관찰 수준이 낮음·중간·높음일 때를 네 가지 가상 시나리오로 비교했습니다. 결과는 합성 시나리오 분석이며, 실증 결과는 아닙니다. 아래 시간은 탐지, 재구성, 개입까지 걸린 시간입니다.
+
+| 시나리오 | 관찰 수준 낮음 | 관찰 수준 높음 | 결정적 요소 |
+|---|---|---|---|
+| S1 같은 모델의 동시 편향 (8개 기관) | 72시간 / 240시간 / 336시간 | 8시간 / 24시간 / 36시간 | `model_version`, 의존성 공개 |
+| S2 외부 데이터 공급자 오염 (12개 기관) | 36시간 / 480시간 / 504시간 | 2시간 / 12시간 / 18시간 | `tool_calls` |
+| S3 국경 간 사기 탐지 오류 (3개 관할) | 12시간 / 336시간 / 348시간 | 3시간 / 6시간 / 8시간 | 국경 간 협력 프로토콜 |
+| S4 15개 에이전트의 동조 주문 | 90초 / 720시간 / 720시간 | 90초 / 4시간 / 약 10분 | 원인 분석과 재발 방지 |
+
+- S2에서 결정적 필드(`tool_calls`)가 빠진 중간 수준은 탐지에 720시간이 걸려, 관찰 수준이 낮을 때(36시간)보다 오히려 늦었습니다. 이 결과가 어떤 조건에서 성립하는지는 논문 9장에서 따로 다룹니다.
+- S4처럼 초 단위로 벌어지는 시장 사건에서는 실시간 개입보다 원인 분석과 같은 날 재발 방지에서 관찰의 가치가 나왔습니다.
+
+## 다음 단계
+
+논문이 제안하는 다음 단계는 전 세계 도입이 아니라 시범 운영입니다. 한두 곳의 국제금융센터가 1·2단계를 적용해 에이전트 목록을 공개하고, 집중 위험 지도를 만들고, T2 접근 절차를 실제로 시험해 보는 것입니다. 그 결과로 MSTS를 다듬고 프레임워크를 실증할 수 있습니다.
