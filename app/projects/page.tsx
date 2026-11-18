@@ -5,11 +5,11 @@ import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "프로젝트",
-  description: "만든 것들. 기능 목록이 아닌 문제·설계·의사결정·결과의 기록.",
+  description: "회사 업무와 개인 서비스에서 맡은 일. 문제와 원인, 해결, 결과 순으로 적었습니다.",
   alternates: { canonical: `${siteConfig.url}/projects` },
   openGraph: {
     title: `프로젝트 — ${siteConfig.name}`,
-    description: "만든 것들. 기능 목록이 아닌 문제·설계·의사결정·결과의 기록.",
+    description: "회사 업무와 개인 서비스에서 맡은 일. 문제와 원인, 해결, 결과 순으로 적었습니다.",
     url: `${siteConfig.url}/projects`,
   },
 };
@@ -24,7 +24,8 @@ export default function ProjectsPage() {
           프로젝트
         </h1>
         <p className="text-sm text-subtle">
-          결과 화면보다, 그 뒤의 문제와 결정을 적었다.
+          회사 업무와 개인 서비스에서 맡은 일을 문제와 원인, 해결, 결과 순으로
+          적었습니다. 수치는 이력서·포트폴리오와 같은 기준입니다.
         </p>
       </div>
 

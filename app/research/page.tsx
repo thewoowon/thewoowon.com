@@ -6,12 +6,12 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "연구",
   description:
-    "금융 AI를 예측이 아니라 추적·신뢰·책임의 시스템 문제로 다룬 연구들. 리스크 계보, VaR 시뮬레이션, Agentic 금융 거버넌스, AI Assurance.",
+    "금융 AI 에이전트 감독, 리스크 파이프라인 원인 분석, VaR 시뮬레이션, 사회연대경제 금융을 다룬 논문과 연구.",
   alternates: { canonical: `${siteConfig.url}/research` },
   openGraph: {
     title: `연구 — ${siteConfig.name}`,
     description:
-      "금융 AI를 예측이 아니라 추적·신뢰·책임의 시스템 문제로 다룬 연구들.",
+      "금융 AI 에이전트 감독, 리스크 파이프라인 원인 분석, VaR 시뮬레이션, 사회연대경제 금융을 다룬 논문과 연구.",
     url: `${siteConfig.url}/research`,
   },
 };
@@ -26,10 +26,10 @@ export default function ResearchPage() {
           연구
         </h1>
         <p className="max-w-xl text-sm leading-relaxed text-subtle">
-          여기 연구들은 대체로 한 가지 질문을 공유한다. 금융에서 AI를 쓸 때 결과가
-          맞았는지만 볼 게 아니라, 그 숫자가 어디서 왔고 왜 그렇게 판단했는지, 틀렸을
-          때 어떻게 되짚을지를 어떻게 보장하느냐다. 예측 성능보다{" "}
-          <span className="text-text">그 추적·설명·복원 가능성</span>에 관심이 있다.
+          금융을 주제로 쓴 논문과 연구입니다. 리스크 수치가 어느 단계에서
+          틀어졌는지, AI 에이전트가 무엇을 보고 무엇을 실행했는지처럼{" "}
+          <span className="text-text">나중에 되짚을 수 있게 만드는 방법</span>을
+          주로 다뤘습니다.
         </p>
       </div>
 

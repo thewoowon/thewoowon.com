@@ -5,7 +5,7 @@ import { formatDateShort } from "@/lib/date";
 const STATUS_LABEL: Record<string, string> = {
   shipped: "출시",
   wip: "진행 중",
-  archived: "아카이브",
+  archived: "서비스 종료",
 };
 
 export default function ProjectCard({ post }: { post: Post }) {

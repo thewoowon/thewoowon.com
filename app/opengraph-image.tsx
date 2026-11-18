@@ -53,7 +53,7 @@ export default function OgImage() {
               maxWidth: 680,
             }}
           >
-            복잡한 시스템을 만들고, 그 신뢰성을 연구한다 · 금융 AI · 제품 엔지니어링
+            Frontend / Product Engineer · 프론트엔드 중심 풀스택 · 경력 5년+
           </span>
         </div>
 

@@ -1,49 +1,44 @@
 ---
 title: "Supervisory Observability for Agentic Finance"
-description: "Agentic AI가 금융에 도입될 때 발생하는 감독 공백을 다룬 정책·시스템 설계 연구. 국제 금융중심지를 위한 국경 간 거버넌스 프레임워크."
+description: "A Cross-border Governance Framework for International Financial Centers. 금융 AI 에이전트를 감독하기 위한 관찰 계층(CSOL)과 최소 기록 표준(MSTS v0.1)을 제안했습니다."
 date: "2026-06-15"
-kind: "policy"
-venue: "A Cross-border Governance Framework for International Financial Centers"
+kind: "paper"
+venue: "WAIFC 게재 · 단독 저자"
 tags: ["금융AI", "거버넌스", "Agentic AI", "감독"]
-results: ["CSOL 제안", "MSTS 스키마", "3대 감독 공백 정의"]
+results: ["WAIFC Young Academic Award 2026 2nd Place", "Top 3 Finalist", "2026.09 연례총회 초청 발표"]
 published: true
 ---
 
+## 수상과 발표
+
+- WAIFC(World Alliance of International Financial Centers) Young Academic Award 2026 **Top 3 Finalist · 2nd Place**
+- 2026년 9월 WAIFC 연례총회(Annual General Meeting)에서 이사회와 국제금융센터 관계자를 대상으로 초청 발표
+
 ## 배경
 
-기존 금융 감독은 **사람이 최종 판단하는 구조**를 전제로 설계돼 있다. 그러나 AI Agent는 시장 데이터와 API를 읽고, 외부 도구를 호출하고, 중간 판단을 거쳐 실행까지 스스로 수행한다.
-
-이 경우 감독기관은 "AI가 무엇을 보았고, 어떤 판단을 했고, 어떤 도구를 호출했으며, 어떤 행동을 실행했는지"를 사후에 복원하기 어려워진다. 감독의 전제 자체가 무너진다.
+지금의 금융 감독은 사람이 최종 판단한다는 전제로 짜여 있습니다. AI 에이전트는 시장 데이터와 API를 읽고, 외부 도구를 호출하고, 중간 판단을 거쳐 실행까지 스스로 합니다. 이렇게 되면 감독기관은 AI가 무엇을 보고, 어떻게 판단하고, 어떤 도구를 호출해 무엇을 실행했는지 사후에 되짚기 어렵습니다.
 
 ## 세 가지 감독 공백
 
-이 연구는 문제를 세 가지 공백으로 정의했다.
-
-1. **Event Visibility Gap** — Agent의 판단 과정을 볼 수 없음.
-2. **Cross-border Coordination Gap** — 여러 국가·기관에 걸친 AI 활동을 하나의 감독 체계로 추적하기 어려움.
-3. **Intervention Gap** — 문제가 감지돼도 표준화된 개입·중단·조정 절차가 부족함.
+1. **Event Visibility Gap**: 에이전트의 판단 과정을 볼 수 없습니다.
+2. **Cross-border Coordination Gap**: 여러 국가와 기관에 걸친 AI 활동을 하나의 감독 체계로 추적하기 어렵습니다.
+3. **Intervention Gap**: 문제를 발견해도 표준화된 개입·중단·조정 절차가 부족합니다.
 
 ## 제안
 
-- **CSOL (Cross-border Supervisory Observability Layer)** — 국경을 넘나드는 금융 AI 활동을 감독기관이 관찰·복원·개입할 수 있는 계층.
-- **MSTS (Minimum Supervisory Trace Schema)** — 금융 AI Agent가 남겨야 하는 **최소 사건 기록**의 표준 스키마.
+- **CSOL (Cross-border Supervisory Observability Layer)**: 국경을 넘는 금융 AI 활동을 감독기관이 관찰하고, 되짚고, 개입할 수 있게 하는 계층입니다.
+- **MSTS (Minimum Supervisory Trace Schema) v0.1**: 금융 AI 에이전트가 남겨야 하는 최소 사건 기록의 표준 스키마입니다.
 
-방향은 이렇다. Agent의 모든 내부 상태를 다 기록하는 게 아니라, 감독에 꼭 필요한 최소한만 남긴다. 그리고 감독기관이 위험 수준에 따라 그 기록을 관찰·복원·개입할 수 있도록 표준을 잡는다.
-
-MSTS가 규정하는 최소 필드는 대략 이런 형태다 — Agent의 전체 내부 상태가 아니라, 사후 복원과 개입에 필요한 최소 단면만 남긴다.
+에이전트의 내부 상태를 전부 기록하지는 않습니다. 감독에 꼭 필요한 최소한만 남기고, 감독기관이 위험 수준에 맞춰 그 기록을 보고 개입할 수 있도록 표준을 정합니다. MSTS의 최소 필드는 다음과 같습니다.
 
 | 필드 | 의미 | 감독 용도 |
 |---|---|---|
 | `agent_id` / `principal` | 실행 주체와 위임 관계 | 책임 귀속 |
-| `observed_inputs` | 판단 시점에 참조한 시장 데이터·API 응답의 해시 | Event Visibility |
+| `observed_inputs` | 판단 시점에 참조한 시장 데이터·API 응답의 해시 | 판단 근거 확인 |
 | `decision` + `rationale_ref` | 내린 결정과 근거 스냅샷 포인터 | 판단 복원 |
 | `tool_calls` | 호출한 외부 도구·주문 API와 파라미터 | 행위 추적 |
-| `risk_tier` | 사전 정의된 위험 등급 | 관찰 강도·개입 트리거 |
-| `jurisdiction` | 관할·국경 정보 | Cross-border 조정 |
-| `intervention_hooks` | 표준 중단·조정 진입점 | Intervention Gap |
+| `risk_tier` | 미리 정한 위험 등급 | 관찰 강도·개입 기준 |
+| `jurisdiction` | 관할·국경 정보 | 국경 간 조정 |
+| `intervention_hooks` | 표준 중단·조정 진입점 | 개입 |
 
-위험 등급(`risk_tier`)이 높은 Agent일수록 더 조밀한 트레이스와 더 강한 개입 훅을 요구하고, 낮으면 최소 기록만 남긴다. 감독 비용을 위험에 비례시키는 설계다.
-
-## 관점
-
-Agentic AI 시대의 금융 감독은 "AI를 쓰지 말라"가 아니라 **"AI가 무엇을 했는지 복원 가능하게 만들라"**가 되어야 한다. 이것은 예측 성능의 문제가 아니라 **감독 가능성(Observability)과 책임성(Accountability)의 설계 문제**다.
+위험 등급이 높은 에이전트일수록 더 촘촘한 기록과 더 강한 개입 수단을 요구하고, 낮으면 최소 기록만 남깁니다. 감독 비용이 위험에 비례하도록 설계했습니다.

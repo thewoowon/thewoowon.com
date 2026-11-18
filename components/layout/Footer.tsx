@@ -17,12 +17,6 @@ export default function Footer() {
           >
             GitHub
           </Link>
-          <Link
-            href="/rss.xml"
-            className="text-xs text-muted transition-colors hover:text-text"
-          >
-            RSS
-          </Link>
         </div>
       </div>
     </footer>

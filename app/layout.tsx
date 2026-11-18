@@ -15,12 +15,12 @@ export const metadata: Metadata = {
   keywords: [
     "우원",
     "thewoowon",
-    "프론트엔드 엔지니어",
-    "금융 AI",
-    "AI Assurance",
+    "프론트엔드 개발자",
+    "풀스택 개발자",
+    "Frontend Engineer",
+    "Product Engineer",
+    "React Native",
     "포트폴리오",
-    "연구",
-    "제품 엔지니어링",
   ],
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,
@@ -52,9 +52,6 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: siteConfig.url,
-    types: {
-      "application/rss+xml": `${siteConfig.url}/rss.xml`,
-    },
   },
 };
 

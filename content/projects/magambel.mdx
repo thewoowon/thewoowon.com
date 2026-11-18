@@ -1,42 +1,42 @@
 ---
-title: "마감벨 — React Native 앱 출시와 네이티브 경계면 트러블슈팅"
-description: "우리 동네 마감 할인 서비스. App Store·Play Store 출시. New Architecture(Fabric) 기반에서 네비게이션·지도·위치·메모리 문제를 구조적으로 해결한 사례."
-date: "2024-09-01"
-status: "shipped"
-role: "팀 프로젝트 · 프론트엔드 전담 (네이티브 경계면 트러블슈팅 포함)"
-stack: ["React Native", "Fabric", "iOS", "Android"]
+title: "React Native 트러블슈팅 — 마감벨·포인토"
+description: "우리 동네 마감 할인 앱 마감벨과 1인 운영 앱 포인토에서 겪은 네이티브 문제 4개. 비즈니스 로직만 고쳐서는 풀리지 않아, 원인을 추적하고 실기기에서 확인했습니다."
+date: "2025-01-01"
+status: "archived"
+role: "마감벨: 팀 프로젝트 · 프론트엔드 개발 (2025.01–06, App Store·Play Store 출시, 서비스 종료) / 포인토: 1인 개발·운영"
+stack: ["React Native · New Arch", "React Navigation", "NAVER Map", "Android Gradle", "Android Studio Logcat", "Xcode"]
 tags: ["React Native", "트러블슈팅", "앱 출시"]
 published: true
 ---
 
-## Context
+마감벨은 지역 매장의 마감 할인 상품을 찾는 앱입니다. 2025년 App Store와 Play Store에 출시했고, 지금은 서비스를 종료했습니다. 아래 1~3번은 마감벨에서, 4번은 포인토에서 겪은 문제입니다.
 
-마감벨은 우리 동네 마감 할인 정보를 연결하는 모바일 서비스로, App Store·Play Store에 출시했다. React Native New Architecture(Fabric) 기반이며 지도·위치 권한·결제·알림·네이티브 모듈이 결합돼 있다. 문제는 시뮬레이터가 아니라 **실제 iOS·Android 기기 기준**으로 재현·검증해야 했다.
+네 문제 모두 비즈니스 로직만 고쳐서는 풀리지 않았습니다. 내비게이션 구조, 네이티브 라이브러리 의존성, 그래픽 리소스의 생명주기를 따라가 원인을 찾았고, 실기기에서 확인했습니다.
 
-## Problem
+## 1. 화면 전환 3번 중 1번꼴로 탭바가 남거나 빈 영역이 보임
 
-- TabBar 숨김/표시 상태가 탭 간 이동에서 일관되지 않고, 특정 화면 진입 후 GNB 영역이 비정상적으로 남음
-- iOS에서 NAVER Map 타일 미출력
-- Android에서 `getCurrentLocation` 호출 시 앱 즉시 크래시
-- iOS에서 화면 전환 반복 시 CoreGraphics 메모리 증가 후 OOM 강제 종료
+- **진단**: 스택 화면으로 넘어갈 때 간헐적으로 생겨서 재현 조건을 하나로 고정하기 어려웠습니다. 디버깅 로그, React Navigation 공식 문서, 비슷한 이슈 사례를 하나씩 대조하며 원인을 지워 나갔습니다.
+- **원인**: 탭 네비게이터 안에 전체 화면 흐름까지 넣고, 화면이 바뀔 때마다 탭바 노출 여부를 손으로 제어하고 있었습니다. 전환 타이밍에 따라 렌더링 순서가 어긋나면서 UI가 깨졌습니다.
+- **해결**: 루트 네비게이터 아래에 탭(`MainTab`)과 전체 화면 스택(`FullScreenStack`)을 나눠 배치했습니다. 전체 화면이 탭 영역 밖에서 열리니, 탭바를 손으로 숨기는 로직 자체가 필요 없어졌습니다.
+- **결과**: 화면 전환 때 탭바와 GNB가 남거나 빈 공간이 생기는 현상이 다시 나오지 않았습니다.
 
-## Decision
+## 2. iOS에서 NAVER Map 타일이 그려지지 않음
 
-겉보기엔 개별 화면 버그였지만, 실제 원인은 Navigation Tree·네이티브 의존성·Fabric 호환성·그래픽 리소스가 어긋나는 지점에 있었다. 조건문으로 급히 덮는 대신 네비게이션 구조를 분리하고 의존성 버전부터 맞췄다. 재현 조건을 고정한 뒤, 원인을 플랫폼 경계면에서 하나씩 확인했다.
+- **진단**: 지도 화면 코드, 라이브러리 버전, 앱의 New Architecture 설정을 하나씩 교차 확인하며 범위를 좁혔습니다.
+- **원인**: 지도 라이브러리의 New Architecture(Fabric) 지원 여부와 앱의 Fabric 활성화 설정이 맞지 않았습니다.
+- **해결**: 지도 라이브러리를 Fabric을 공식 지원하는 버전으로 올렸습니다.
+- **결과**: iOS 실기기에서 지도 타일이 정상으로 나옵니다.
 
-## Implementation
+## 3. Android에서 현재 위치를 조회하면 앱이 바로 종료됨
 
-- **TabBar/GNB**: `MainTab`과 `FullScreenStack`을 `RootNavigator` 기준으로 분리, GNB 노출 조건을 화면 내부 상태가 아니라 라우팅 구조 기준으로 정리
-- **NAVER Map**: Fabric 환경에서 지도 패키지 버전 정합성 확인, iOS 타일 미출력 원인 분석 및 구성 정리
-- **Android Location Crash**: `play-services-location` 중복·충돌 원인 분석, Gradle 강제 버전 지정으로 Native Dependency 정합성 확보
-- **iOS OOM**: `CGBitmapContextCreate` 로그 분석 → SVG 배경 컴포넌트 리소스 누수 추적·제거로 반복 전환 시 메모리 증가 완화
+- **진단**: Android Studio Logcat에서 크래시 스택 트레이스를 따라가 `play-services-location` 버전 불일치 오류를 찾았습니다.
+- **원인**: 위치 라이브러리와 다른 의존성 패키지가 서로 다른 버전의 `play-services-location`을 부르면서 네이티브 빌드와 런타임이 충돌했습니다.
+- **해결**: Android Gradle 설정(`resolutionStrategy` 등)에서 `play-services-location`을 한 버전으로 강제 통일했습니다.
+- **결과**: 위치 조회 때 나던 네이티브 크래시가 사라졌습니다.
 
-## Impact
+## 4. iOS에서 화면 전환을 반복하면 메모리가 쌓여 강제 종료됨 (포인토)
 
-- App Store·Play Store 출시 완료
-- TabBar/GNB 일관성, Android 위치 크래시, iOS 지도 미출력, iOS OOM 문제 모두 해결
-- RN 앱 배포 과정의 네이티브 경계면 문제 대응 경험 확보
-
-## Transferable Insight
-
-React Native 앱의 문제는 JavaScript 안에서만 터지지 않는다. Navigation Tree, 네이티브 모듈, 플랫폼 SDK, 패키지 버전, 그래픽 리소스, 실기기 런타임이 겹치는 경계면에서 터진다. 그래서 크래시 하나를 "JS 버그"로 보면 못 잡고, 어느 층이 어긋났는지부터 물어야 잡힌다.
+- **진단**: Xcode 콘솔에서 화면이 바뀔 때마다 `CGBitmapContextCreate` 로그가 쌓이는 것을 보고, 그래픽 메모리를 잡고 있는 컴포넌트를 거꾸로 찾아갔습니다. Xcode Instruments로 실제 메모리가 늘어나는 것도 확인했습니다.
+- **원인**: 화면 배경에 쓴 SVG 컴포넌트가 전환 때마다 비트맵 리소스를 풀지 않고 쌓고 있었습니다.
+- **해결**: 문제의 SVG 배경 컴포넌트를 걷어 내고, 메모리를 덜 쓰는 방식으로 리소스를 다시 구성했습니다.
+- **결과**: 화면 전환을 반복해도 메모리가 쌓이거나 앱이 종료되지 않습니다.

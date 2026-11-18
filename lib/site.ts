@@ -2,16 +2,15 @@ export const siteConfig = {
   name: "우원",
   handle: "thewoowon",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://thewoowon.com",
-  title: "우원 — 금융 AI · 제품 엔지니어링",
+  title: "우원 — Frontend / Product Engineer",
   description:
-    "KB국민은행에서 광고·리워드 수익화 시스템을 설계하는 프론트엔드 엔지니어이자, 금융 리스크가 어디서·왜 틀렸는지 역추적하는 금융 AI 연구자. 우원(thewoowon).",
+    "금융 앱 광고·리워드, 치과 EMR, 1인 운영 서비스를 만들고 운영해 온 5년 차 프론트엔드 중심 풀스택 개발자 우원(thewoowon)입니다.",
   github: "https://github.com/thewoowon",
   email: "thewoowon@gmail.com",
   nav: [
     { label: "프로젝트", href: "/projects" },
     { label: "연구", href: "/research" },
     { label: "Boundary-First", href: "/boundary-first" },
-    { label: "글", href: "/writing" },
     { label: "어바웃", href: "/about" },
     { label: "지금", href: "/now" },
   ],

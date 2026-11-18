@@ -3,63 +3,34 @@ import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "지금",
-  description: "지금 이 순간 무엇에 집중하고 있는지. Derek Sivers의 /now 아이디어에서.",
+  description: "지금 하고 있는 일과 최근에 마친 일.",
   alternates: { canonical: `${siteConfig.url}/now` },
   openGraph: {
     title: `지금 — ${siteConfig.name}`,
-    description: "지금 이 순간 무엇에 집중하고 있는지.",
+    description: "지금 하고 있는 일과 최근에 마친 일.",
     url: `${siteConfig.url}/now`,
   },
 };
 
-// 여기를 직접 수정해서 현재 상태를 업데이트한다
+// 여기를 직접 수정해서 현재 상태를 업데이트한다.
+// 경력·수상 관련 사실은 이력서·포트폴리오(v4.0.0)와 같게 유지한다.
 const NOW = {
-  updatedAt: "2026년 7월",
+  updatedAt: "2026년 11월",
   location: "서울",
   sections: [
     {
-      title: "일하고 있는 것",
+      title: "하고 있는 것",
       items: [
-        "KB국민은행 스타뱅킹 — 광고·혜택·리워드 수익화 시스템 운영 및 useAd 모듈 고도화",
-        "외부 광고 SDK(NAM) 생명주기·재진입 안정화 및 리워드 캠페인 어드민",
-        "개인 포트폴리오/연구소 사이트 개편 (현재 이 사이트)",
+        "포인토 1인 운영 (2025년 4월부터). 이미 쓰고 있는 매장의 요청 반영과 운영 안정성에 집중하고 있습니다.",
+        "Boundary-First 설계 규격 정리. React·Next.js·React Native 템플릿과 아키텍처 검증기를 다듬고 있습니다.",
       ],
     },
     {
-      title: "붙잡고 있는 것",
+      title: "최근 마친 것",
       items: [
-        "경계 우선(boundary-first) 프론트엔드 구조 — 화면이 아니라 경계에서 시작하는 나만의 설계 원칙",
-        "라우팅·상태·도메인·실패·런타임 경계를 React·Next.js·React Native 템플릿과 아키텍처 검증기로 정리",
-      ],
-    },
-    {
-      title: "써 둔 연구",
-      items: [
-        "FINRCA — 계보 그래프 기반 금융 리스크 원인 분석 (탈고, arXiv 공개 준비)",
-        "몬테카를로 / 준몬테카를로 VaR 비교 — 한국 금융시장 실증 (탈고)",
-        "Agentic Finance의 감독 가능성(CSOL·MSTS) 거버넌스 설계 (탈고)",
-      ],
-    },
-    {
-      title: "공부하고 있는 것",
-      items: [
-        "영어 — 원서 독해, 회화, 논문 읽기를 병행 (E5 KAIST)",
-        "AI 논문 리뷰 — 관심 분야 최신 논문 직접 읽고 정리",
-      ],
-    },
-    {
-      title: "읽고 있는 것",
-      items: [
-        "황제의 새 마음 — 로저 펜로즈",
-        "카오스 — 제임스 글릭",
-        "리만 가설 — 존 더비셔",
-      ],
-    },
-    {
-      title: "집중하지 않는 것",
-      items: [
-        "단기 트렌드 쫓기",
-        "완성되지 않은 것 공개하기",
+        "2026년 9월 · WAIFC 연례총회 초청 발표 (Young Academic Award 2026 2nd Place)",
+        "2026년 8월 · 한양대학교 공학대학원 컴퓨터공학 석사 졸업, 학위논문 FINRCA",
+        "2026년 8월 · KB국민은행 혜택광고팀 근무 마침 (2024년 8월부터)",
       ],
     },
   ],
@@ -108,7 +79,7 @@ export default function NowPage() {
         >
           Derek Sivers의 /now 운동
         </a>
-        에서 영감 받았다. 이력서가 아닌, 지금 이 순간의 스냅샷.
+        에서 가져온 형식입니다. 경력 전체는 어바웃 페이지에 있습니다.
       </p>
     </div>
   );

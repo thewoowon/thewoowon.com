@@ -71,7 +71,7 @@ export default async function ProjectPage({ params }: Props) {
                   ? "출시"
                   : fm.status === "wip"
                   ? "진행 중"
-                  : "아카이브"}
+                  : "서비스 종료"}
               </span>
             </>
           )}

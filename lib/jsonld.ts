@@ -13,26 +13,9 @@ export function personSchema() {
     sameAs: [
       "https://github.com/thewoowon",
     ],
-    jobTitle: "금융 AI · 제품 엔지니어",
+    jobTitle: "Frontend / Product Engineer",
     description:
-      "KB국민은행 스타뱅킹에서 광고·리워드 프론트엔드를 만들고, 금융 리스크·AI 감독 문제를 연구합니다.",
-  };
-}
-
-export function articleSchema(slug: string, fm: Frontmatter) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: fm.title,
-    description: fm.description,
-    datePublished: fm.date,
-    author: {
-      "@type": "Person",
-      name: PERSON_NAME,
-      url: PERSON_URL,
-    },
-    url: `${SITE_URL}/writing/${slug}`,
-    mainEntityOfPage: `${SITE_URL}/writing/${slug}`,
+      "금융 앱 광고·리워드, 치과 EMR, 1인 운영 서비스를 만들고 운영해 온 5년 차 프론트엔드 중심 풀스택 개발자입니다.",
   };
 }
 

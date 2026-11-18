@@ -4,7 +4,7 @@ import matter from "gray-matter";
 
 const CONTENT_ROOT = path.join(process.cwd(), "content");
 
-export type ContentType = "projects" | "writing" | "research";
+export type ContentType = "projects" | "research";
 
 export interface Frontmatter {
   title: string;
@@ -16,10 +16,7 @@ export interface Frontmatter {
   link?: string;
   status?: "shipped" | "wip" | "archived";
   role?: string;
-  // writing only
-  category?: string;
   published?: boolean;
-  note?: boolean; // 범용 학습노트 → 목록에서 접힘 처리
   // research only
   venue?: string;
   kind?: "paper" | "essay" | "policy";
